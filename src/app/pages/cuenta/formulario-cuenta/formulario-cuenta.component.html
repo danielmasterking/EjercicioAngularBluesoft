@@ -1,0 +1,25 @@
+<h3>Crea tu cuenta de ahorros</h3>
+
+  <div class="alert alert-{{tipoMensaje}}" role="alert" *ngIf="notificacion">
+    {{mensaje}}
+  </div>
+
+<form [formGroup]="formulario" (ngSubmit)="submit()">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <label for="">Nombre completo</label>
+            <input type="text" class="form-control" formControlName="nombre" placeholder = "EJemplo Daniel Mercado">
+        </div>
+
+        <div class="col-md-6">
+            <label for="">Saldo inicial</label>
+            <input type="number" class="form-control" formControlName="saldo" placeholder = "EJemplo 10000">
+        </div>
+
+    </div>
+
+    <br>
+    <button class="btn btn-primary" [disabled]="disabled">Crear</button>
+</form>
