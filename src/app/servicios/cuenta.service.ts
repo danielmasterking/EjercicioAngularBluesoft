@@ -13,4 +13,8 @@ export class CuentaService {
   crearCuenta(datos:object) {
     return this.http.post(this._baseUrl + 'crear_cuenta', datos);
   }
+
+  consignar(datos:object) {
+    return this.http.post(this._baseUrl + 'consignar', datos);
+  }
 }

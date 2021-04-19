@@ -11,12 +11,20 @@
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#">
-                        <i class="fas fa-money-check-alt"></i> Consignar
+                    <a href="#" (click) = "activarModulo('consignar')">
+                        <i class="fas fa-piggy-bank"></i> Consignar
                     </a>
                 </li>
-                <li class="list-group-item">Retirar dinero</li>
-                <li class="list-group-item">Consultar saldo</li>
+                <li class="list-group-item">
+                    <a href="#" (click) = "activarModulo('retirar')">
+                        <i class="fas fa-money-check-alt"></i> Retirar Dinero
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#" (click) = "activarModulo('consultar')">
+                        <i class="fas fa-money-check-alt"></i> Consultar saldo
+                    </a>
+                </li>
             </ul>
             
         </div>
@@ -30,6 +38,8 @@
                 
                 <hr>
                 <app-formulario-cuenta *ngIf="crearCuenta"></app-formulario-cuenta>
+
+                <app-formulario-consignar *ngIf="consignar" ></app-formulario-consignar>
             </div>
             <!-- *********************************************************************************************** -->
         </div>

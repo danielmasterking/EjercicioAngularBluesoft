@@ -24,7 +24,7 @@ export class CuentaComponent implements OnInit {
         this.crearCuenta = true;
         this.consignar = false;
         this.retirar = false;
-          this.consultar = false;
+        this.consultar = false;
         break;
       
       case 'consignar':

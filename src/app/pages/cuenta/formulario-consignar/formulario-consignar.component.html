@@ -1,1 +1,25 @@
-<p>formulario-consignar works!</p>
+<h3>Consignar dinero a tu cuenta</h3>
+
+<div class="alert alert-{{tipoMensaje}}" role="alert" *ngIf="notificacion">
+    {{mensaje}}
+</div>
+
+<form [formGroup]="formulario" (ngSubmit)="submit()">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <label for="">Numero de cuenta</label>
+            <input type="number" class="form-control" formControlName="numero_cuenta" placeholder = "EJemplo 455454">
+        </div>
+
+        <div class="col-md-6">
+            <label for="">Valor a consignar</label>
+            <input type="number" class="form-control" formControlName="valor_consignar" placeholder = "EJemplo 10000">
+        </div>
+
+    </div>
+
+    <br>
+    <button class="btn btn-primary" [disabled]="disabled">Consignar</button>
+</form>
