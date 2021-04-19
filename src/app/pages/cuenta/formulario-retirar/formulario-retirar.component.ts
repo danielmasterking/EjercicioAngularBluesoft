@@ -3,22 +3,20 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { CuentaService } from '../../../servicios/cuenta.service';
 
 @Component({
-  selector: 'app-formulario-consignar',
-  templateUrl: './formulario-consignar.component.html',
-  styleUrls: ['./formulario-consignar.component.css']
+  selector: 'app-formulario-retirar',
+  templateUrl: './formulario-retirar.component.html',
+  styleUrls: ['./formulario-retirar.component.css']
 })
-export class FormularioConsignarComponent implements OnInit {
-
+export class FormularioRetirarComponent implements OnInit {
   formulario = new FormGroup({
     numero_cuenta: new FormControl(''),
-    valor_consignar: new FormControl('')
+    valor_retirar: new FormControl('')
   });
 
   disabled:boolean = false;
   tipoMensaje:string;
   notificacion:boolean = false;
   mensaje:string;
-
   constructor(
     public cuentaService:CuentaService
   ) { }
@@ -32,26 +30,27 @@ export class FormularioConsignarComponent implements OnInit {
         'danger',
         'El numero de cuenta es obligatorio'
       );
-    }else if(this.formulario.value.valor_consignar == '' ||  this.formulario.value.valor_consignar == undefined){
+    }else if(this.formulario.value.valor_retirar == '' ||  this.formulario.value.valor_retirar == undefined){
       this.notificacionMensaje(
         'danger',
-        'El valor a consignar es obligatorio'
+        'El valor a retirar es obligatorio'
       );
     }else{
-      let confirmar = this.confirmacion('Seguro desea consignar este dinero?');
+      let confirmar = this.confirmacion('Seguro desea retirar este dinero?');
       if(confirmar){
         console.log(this.formulario.value);
         this.disabled = true;
         let data = this.formulario.value;
 
-        this.cuentaService.consignar(
-          data
+        this.cuentaService.retirar(
+          this.formulario.value.numero_cuenta,
+          this.formulario.value.valor_retirar
         ).subscribe(response => {
           console.log(response)
           if(response['code'] == 200){
             this.notificacionMensaje(
               'success',
-              'La cuenta con numero  ' + response['numeroCuenta'] + ' recibio una consignacion exitoda de $.' + this.formatNumber(this.formulario.value.valor_consignar) + ' el nuevo saldo de esta cuenta es $.' + this.formatNumber(response['nuevoSaldo'])
+              'Retiro exitoso acabas de retirar  $.' + this.formatNumber(this.formulario.value.valor_retirar) + '   el nuevo saldo de la cuenta numero '+ this.formulario.value.numero_cuenta +' es de $.' + this.formatNumber(response['nuevoSaldo'])
             );
             this.formulario.reset();
             this.disabled = false;
@@ -97,4 +96,5 @@ export class FormularioConsignarComponent implements OnInit {
 
     return confirmacion;
   }
+
 }

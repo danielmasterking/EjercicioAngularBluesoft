@@ -26,6 +26,7 @@ export class FormularioCuentaComponent implements OnInit {
 
 
   submit(){
+    
     if(this.formulario.value.nombre == '' ||  this.formulario.value.nombre == undefined){
       this.notificacionMensaje(
         'danger',
@@ -37,28 +38,40 @@ export class FormularioCuentaComponent implements OnInit {
         'El saldo es obligatorio'
       );
     }else{
-      console.log(this.formulario.value);
-      this.disabled = true;
-      let data = this.formulario.value;
+      let confirmar = this.confirmacion('Seguro desea crear una cuenta de ahorros?');
+      if(confirmar){
+        console.log(this.formulario.value);
+        this.disabled = true;
+        let data = this.formulario.value;
 
-      this.cuentaService.crearCuenta(
-        data
-      ).subscribe(response => {
-        console.log(response)
-        if(response['code'] == 200){
-          this.notificacionMensaje(
-            'success',
-            'Su cuenta de ahorros fue creada correctamente , este es su numero de cuenta unico ' + response['numeroCuenta']
-          );
-          this.formulario.reset();
-          this.disabled = false;
-        }else {
-          this.notificacionMensaje(
-            'success',
-            'Ocurrio un error al momento de crear la cuenta'
-          );
-        }
-      });
+        this.cuentaService.crearCuenta(
+          data
+        ).subscribe(response => {
+          console.log(response)
+          if(response['code'] == 200){
+            this.notificacionMensaje(
+              'success',
+              'Su cuenta de ahorros fue creada correctamente , este es su numero de cuenta unico ' + response['numeroCuenta']
+            );
+            this.formulario.reset();
+            this.disabled = false;
+          }else {
+            this.formulario.reset();
+            this.disabled = false;
+            let msjError:string ='';
+
+            response['errores'].forEach(element => {
+              msjError += element + ' - ';
+            });
+
+
+            this.notificacionMensaje(
+              'danger',
+              msjError
+            );
+          }
+        });
+      }
     }
   }
 
@@ -72,5 +85,11 @@ export class FormularioCuentaComponent implements OnInit {
 
   desactivarNotificacion() {
     this.notificacion = false
+  }
+
+  confirmacion(mensaje:string){
+    let confirmacion = confirm(mensaje);
+
+    return confirmacion;
   }
 }

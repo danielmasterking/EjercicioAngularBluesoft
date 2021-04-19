@@ -1,4 +1,4 @@
-<h3>Consignar dinero</h3>
+<h3>Consultar saldo</h3>
 
 <div class="alert alert-{{tipoMensaje}}" role="alert" *ngIf="notificacion">
     {{mensaje}}
@@ -8,18 +8,14 @@
 
     <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-12">
             <label for="">Numero de cuenta</label>
             <input type="number" class="form-control" formControlName="numero_cuenta" placeholder = "EJemplo 455454">
         </div>
-
-        <div class="col-md-6">
-            <label for="">Valor a consignar</label>
-            <input type="number" class="form-control" formControlName="valor_consignar" placeholder = "EJemplo 10000">
-        </div>
-
     </div>
 
     <br>
-    <button class="btn btn-primary" [disabled]="disabled">Consignar</button>
+    <button class="btn btn-primary" [disabled]="disabled">Consultar</button>
 </form>
+
+<h3 *ngIf="verSaldo">El saldo actual de la cuenta {{numeroCuenta}} es de $.{{saldoActual}}</h3>

@@ -13,6 +13,8 @@ import { CuentaComponent } from './pages/cuenta/cuenta.component';
 import { FormularioCuentaComponent } from './pages/cuenta/formulario-cuenta/formulario-cuenta.component';
 import { FormularioConsignarComponent } from './pages/cuenta/formulario-consignar/formulario-consignar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormularioRetirarComponent } from './pages/cuenta/formulario-retirar/formulario-retirar.component';
+import { FormularioConsultarComponent } from './pages/cuenta/formulario-consultar/formulario-consultar.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CuentaComponent,
     FormularioCuentaComponent,
     FormularioConsignarComponent,
+    FormularioRetirarComponent,
+    FormularioConsultarComponent,
   ],
   imports: [
     BrowserModule,

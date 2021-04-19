@@ -17,4 +17,12 @@ export class CuentaService {
   consignar(datos:object) {
     return this.http.post(this._baseUrl + 'consignar', datos);
   }
+
+  retirar(numeroCuenta:string , valor:number) {
+    return this.http.get(this._baseUrl + 'retirar/'+ numeroCuenta + '/' +  valor);
+  }
+
+  consultar(numeroCuenta:string) {
+    return this.http.get(this._baseUrl + 'consultarSaldo/'+ numeroCuenta);
+  }
 }
