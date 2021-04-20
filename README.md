@@ -29,7 +29,8 @@
 
 <p>
     Para esa aplicacion use el framework front end <b>Angular 10</b> para el desarrollo del front de la aplicacion que consume unos servicios echos en <b>Laravel</b>
-    <b>npm</b> que es el manejador de dependencias de node js
+    <b>npm</b> que es el manejador de dependencias de node js.
+    <b>Bootstrap</b> como framework css para mejorar el aspecto de interfaz
 </p>
 
 <h3>Explicacion logica de la aplicacion</h3>
